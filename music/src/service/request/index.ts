@@ -42,21 +42,14 @@ class HYRequest{
 
     //封装网络请求的方法
     request<T = any>(config:HYRequestConfig<T>){
-        if(config.interceptors?.requestSuccessFn){
-            config = config.interceptors.requestSuccessFn(config);
-        }
-        if(config.interceptors?.responseSuccessFn){
-            config = config.interceptors.responseSuccessFn(config);
-        }
-        
         //返回Promise对象
         return new Promise<T>((resolve,reject)=>{
             this.instance.request<any,T>(config).then(res=>{
-                if(config.interceptors?.responseSuccessFn){
-                    res = config.interceptors.responseSuccessFn(res);
-                }
                 resolve(res);
             }).catch(err=>{
+                if(config.interceptors?.responseFailureFn){
+                    err = config.interceptors.responseFailureFn(err);
+                }
                 reject(err);
             })
         })
