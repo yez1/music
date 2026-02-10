@@ -5,6 +5,8 @@ import {shallowEqual} from 'react-redux'
 import { useAppSelector,useAppDispatch,shallowEqualApp } from './store/index'
 import { changeMessageAction } from './store/modules/counter'
 
+import {Button} from 'antd'
+
 // import store from './store'
 // type GetstateFnType= typeof store.getState;
 // type IrootState = ReturnType<GetstateFnType>
@@ -39,7 +41,14 @@ function handlechangeMessage(){
       <Suspense fallback="">
         <div className="main">{useRoutes(routes)}</div>
       </Suspense>
+
+      <Button type="primary">Primary Button</Button>
+      <Button>Default Button</Button>
+      <Button type="dashed">Dashed Button</Button>
+      <Button type="text">Text Button</Button>
+      <Button type="link">Link Button</Button>
     </div>
+
   )
 }
 
