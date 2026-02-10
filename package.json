@@ -1,4 +1,10 @@
 {
+  "scripts": {
+    "start": "npm --prefix ./music start",
+    "build": "npm --prefix ./music run build",
+    "test": "npm --prefix ./music test",
+    "prettier": "npm --prefix ./music run prettier"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "react-redux": "^9.2.0"
