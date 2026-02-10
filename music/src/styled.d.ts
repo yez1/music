@@ -6,6 +6,8 @@ declare module 'styled-components' {
       primary: string;
       secondary: string;
     };
+
+    
     size: Record<string, any>;
     mixin: {
       wrapV1: string;

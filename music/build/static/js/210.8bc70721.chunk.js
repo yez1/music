@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmusic=self.webpackChunkmusic||[]).push([[210],{8210(s,e,c){c.r(e),c.d(e,{default:()=>a});var u=c(5043),i=c(579);const n=()=>(0,i.jsx)("div",{children:"Ranking"}),a=(0,u.memo)(n)}}]);
+//# sourceMappingURL=210.8bc70721.chunk.js.map
