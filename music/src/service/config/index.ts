@@ -1,6 +1,6 @@
 //本地开发环境
 // export const BASE_URL = "http://localhost:3000";
-export const BASE_URL = "https://netease-cloud-music-api-iota-nine-76.vercel.app/";
+export const BASE_URL = "https://giant-zoos-itch.loca.lt";
 
 export const TIME_OUT = 10000;
 
