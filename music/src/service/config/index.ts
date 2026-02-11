@@ -1,19 +1,30 @@
-import axios from 'axios';
-//本地开发环境
-// export const BASE_URL = "http://localhost:3000";
-// export const BASE_URL = "https://giant-zoos-itch.loca.lt";
-// 在你创建 axios 实例或配置拦截器的地方添加 headers
-     const service = axios.create({
-        baseURL: 'https://giant-zoos-itch.loca.lt', // 确保这是你最新的穿透地址
-        timeout: 5000,
-        headers: {
-        // 关键：这行代码会告诉 LocalTunnel 跳过验证页
-        'Bypass-Tunnel-Reminder': 'true' 
-        }
-    });
+// import axios from 'axios';
+// //本地开发环境
+// // export const BASE_URL = "http://localhost:3000";
 
+
+
+// export const TIME_OUT = 10000;
+
+// // console.log(process.env.NODE_ENV)
+
+// // console.log(process.env.REACT_APP_BASE_URL)
+
+
+import axios from 'axios';
+
+// 1. 定义地址
+export const BASE_URL = "https://giant-zoos-itch.loca.lt";
 export const TIME_OUT = 10000;
 
-// console.log(process.env.NODE_ENV)
+// 2. 创建并导出 axios 实例
+const service = axios.create({
+    baseURL: BASE_URL, 
+    timeout: TIME_OUT,
+    headers: {
+        'Bypass-Tunnel-Reminder': 'true' 
+    }
+});
 
-// console.log(process.env.REACT_APP_BASE_URL)
+// 必须导出这个 service，其他页面才能引用它
+export default service;
