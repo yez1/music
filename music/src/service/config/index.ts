@@ -14,7 +14,7 @@
 import axios from 'axios';
 
 // 1. 定义地址
-export const BASE_URL = "https://giant-zoos-itch.loca.lt";
+export const BASE_URL = "https://slick-seals-float.loca.lt";
 export const TIME_OUT = 10000;
 
 // 2. 创建并导出 axios 实例
