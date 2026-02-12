@@ -2,7 +2,7 @@ import axios from 'axios';
 //本地开发环境
 // export const BASE_URL = "http://localhost:3000";
 // config.ts
-export const BASE_URL = process.env.REACT_APP_API_URL || "https://hey-belle-underlying-wines.trycloudflare.com";
+export const BASE_URL = process.env.REACT_APP_API_URL || "https://generations-time-anyway-consent.trycloudflare.com";
 
 
 export const TIME_OUT = 10000;
