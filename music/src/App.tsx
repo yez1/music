@@ -4,6 +4,7 @@ import routes from './router'
 import AppHeader from './components/app-header'
 import AppFooter from './components/app-footer'
 import AppPlayerBar from './views/player/app-player-bar'
+import AISidebar from './views/ai-sidebar'
 import { fetchCurrentSongAction } from './views/player/store/player'
 import { useAppDispatch } from './store'
 
@@ -24,7 +25,7 @@ function App() {
       <AppFooter/>
 
       <AppPlayerBar/>
-      
+      <AISidebar/>
     </div>
   )
 }

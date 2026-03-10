@@ -27,3 +27,13 @@ export function getSongLyric(id:number){
         }
     })
 }
+
+export function searchSong(keywords:string, limit:number = 5){
+    return hyRequest.get({
+        url:'/search',
+        params:{
+            keywords,
+            limit
+        }
+    })
+}
