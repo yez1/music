@@ -24,7 +24,8 @@ export const HeaderLeft = styled.div`
       display: block;
       width: 176px;
       height: 70px;
-      background-position: 0 0;
+      background-position: center;
+      background-size: contain;
       text-indent: -9999px;
     }
 
