@@ -33,25 +33,68 @@ const ChatMessage: FC<IProps> = ({ role, content, isStreaming }) => {
     [dispatch]
   )
 
+  const makeSongsClickable = (children: React.ReactNode): React.ReactNode => {
+    return React.Children.map(children, (child) => {
+      if (typeof child === 'string') {
+        const parts = child.split(/(《[^》]+》)/g)
+        if (parts.length === 1) return child
+        return parts.map((part, i) => {
+          const match = part.match(/^《([^》]+)》$/)
+          if (match) {
+            return (
+              <span key={i} className="song-link" onClick={() => handleSongClick(match[1])}>
+                {part}
+              </span>
+            )
+          }
+          return part
+        })
+      }
+      return child
+    })
+  }
+
+  const extractText = (node: React.ReactNode): string => {
+    if (typeof node === 'string') return node
+    if (typeof node === 'number') return String(node)
+    if (Array.isArray(node)) return node.map(extractText).join('')
+    if (React.isValidElement(node)) return extractText((node.props as any)?.children)
+    return ''
+  }
+
+  const songComponents: Record<string, React.FC<any>> = {
+    a: ({ href, children }: any) => {
+      const songName = extractText(children).replace(/[《》]/g, '')
+      return (
+        <span
+          className="song-link"
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            if (songName) handleSongClick(songName)
+          }}
+        >
+          {children}
+        </span>
+      )
+    },
+    p: ({ children }: any) => <p>{makeSongsClickable(children)}</p>,
+    li: ({ children }: any) => <li>{makeSongsClickable(children)}</li>,
+    h1: ({ children }: any) => <h1>{makeSongsClickable(children)}</h1>,
+    h2: ({ children }: any) => <h2>{makeSongsClickable(children)}</h2>,
+    h3: ({ children }: any) => <h3>{makeSongsClickable(children)}</h3>,
+    h4: ({ children }: any) => <h4>{makeSongsClickable(children)}</h4>,
+    strong: ({ children }: any) => <strong>{makeSongsClickable(children)}</strong>,
+    em: ({ children }: any) => <em>{makeSongsClickable(children)}</em>,
+  }
+
   const renderContent = () => {
     if (isUser) {
       return <span>{content}</span>
     }
 
     return (
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{
-          a: ({ href, children }) => (
-            <span
-              className="song-link"
-              onClick={() => handleSongClick(String(children))}
-            >
-              {children}
-            </span>
-          )
-        }}
-      >
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={songComponents}>
         {content}
       </ReactMarkdown>
     )
